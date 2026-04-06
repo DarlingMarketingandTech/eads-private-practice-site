@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Calendar, ShieldCheck } from "lucide-react";
+import { Calendar, Mail, ShieldCheck } from "lucide-react";
 
 const insurancePartners = {
   illinois: [
@@ -65,32 +65,44 @@ export function ConnectSection() {
 
           {/* Email & Phone Contact */}
           <div className="pt-8 border-t border-stone-300">
-            <p className="text-stone-800">
-              You can also email me:{" "}
-              <a
-                href="mailto:tucker@blazingstartherapy.com"
-                className="text-stone-900 font-semibold hover:underline underline-offset-4"
-              >
-                tucker@blazingstartherapy.com
-              </a>
-            </p>
-            <p className="mt-3 text-stone-800">
-              Indiana:{" "}
-              <a
-                href="tel:18122698624"
-                className="text-stone-900 font-semibold hover:underline underline-offset-4"
-              >
-                812-269-8624
-              </a>
-              <br />
-              Illinois:{" "}
-              <a
-                href="tel:13129679987"
-                className="text-stone-900 font-semibold hover:underline underline-offset-4"
-              >
-                312-967-9987
-              </a>
-            </p>
+            <div className="rounded-2xl border border-stone-200 bg-stone-100/60 p-5 md:p-6">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-stone-700 ring-1 ring-stone-200">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <p className="text-base font-medium text-stone-800">
+                  You can also reach me directly
+                </p>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                <a
+                  href="mailto:tucker@blazingstartherapy.com"
+                  className="flex flex-col gap-1 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+                >
+                  <span className="text-sm font-medium text-stone-600">Email</span>
+                  <span className="break-all text-base font-semibold text-stone-900">
+                    tucker@blazingstartherapy.com
+                  </span>
+                </a>
+
+                <a
+                  href="tel:18122698624"
+                  className="flex items-center justify-between gap-4 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+                >
+                  <span className="text-sm font-medium text-stone-600">Indiana</span>
+                  <span className="text-base font-semibold text-stone-900">812-269-8624</span>
+                </a>
+
+                <a
+                  href="tel:13129679987"
+                  className="flex items-center justify-between gap-4 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+                >
+                  <span className="text-sm font-medium text-stone-600">Illinois</span>
+                  <span className="text-base font-semibold text-stone-900">312-967-9987</span>
+                </a>
+              </div>
+            </div>
           </div>
         </motion.div>
 

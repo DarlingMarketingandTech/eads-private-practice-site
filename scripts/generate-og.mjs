@@ -11,84 +11,106 @@ const colors = {
   accent: '#D4A574',       // Gold
   background: '#FEFEFE',   // Near white
   text: '#334948',         // Deep Teal
+  muted: '#5E7472',
 };
 
 async function generateOGImage() {
   try {
-    const logoPath = path.join(__dirname, '..', 'public', 'images', 'branding', 'website-logo.png');
+    const photoPath = path.join(__dirname, '..', 'public', 'images', 'home page', 'new-bio-photo.jpg');
     const outputPath = path.join(__dirname, '..', 'public', 'og.png');
 
-    // Check if logo exists
-    let logoBuffer = null;
-    if (fs.existsSync(logoPath)) {
-      logoBuffer = await sharp(logoPath)
-        .resize(250, null, { fit: 'inside', withoutEnlargement: true })
-        .toBuffer();
+    if (!fs.existsSync(photoPath)) {
+      throw new Error(`Bio photo not found at ${photoPath}`);
     }
 
-    // Create SVG with text (using system fonts for reliability)
+    const cardWidth = 1200;
+    const cardHeight = 630;
+    const photoWidth = 480;
+
+    const photoBuffer = await sharp(photoPath)
+      .resize(photoWidth, cardHeight, {
+        fit: 'cover',
+        position: 'attention',
+      })
+      .modulate({ brightness: 1.03, saturation: 1.02 })
+      .toBuffer();
+
     const svg = `
-<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+<svg width="${cardWidth}" height="${cardHeight}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .serif { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; }
       .sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     </style>
+    <linearGradient id="panelGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#F6F1E8" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="fadeRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FEFEFE" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FEFEFE" stop-opacity="1"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="630" fill="${colors.background}"/>
+  <rect x="0" y="0" width="760" height="${cardHeight}" fill="url(#panelGlow)"/>
+  <circle cx="120" cy="98" r="86" fill="${colors.accent}" fill-opacity="0.12"/>
+  <circle cx="684" cy="544" r="168" fill="${colors.primary}" fill-opacity="0.05"/>
+  <rect x="690" y="0" width="30" height="${cardHeight}" fill="url(#fadeRight)"/>
 
-  <!-- Subtle decorative gradient -->
-  <defs>
-    <radialGradient id="grad" cx="85%" cy="50%">
-      <stop offset="0%" style="stop-color:${colors.primary};stop-opacity:0.03" />
-      <stop offset="100%" style="stop-color:${colors.primary};stop-opacity:0" />
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#grad)"/>
+  <g transform="translate(88, 98)">
+    <text x="0" y="0" class="sans" font-size="22" font-weight="600" letter-spacing="2.8" fill="${colors.accent}">
+      BLOOMINGTON TELEHEALTH
+    </text>
+    <line x1="0" y1="30" x2="96" y2="30" stroke="${colors.accent}" stroke-width="4"/>
 
-  <!-- Content container -->
-  <g transform="translate(80, 100)">
-    ${logoBuffer ? `<image href="data:image/png;base64,${logoBuffer.toString('base64')}" x="0" y="0" height="60" preserveAspectRatio="xMidYMid meet"/>` : ''}
-
-    <!-- Practice Name (must match src/config/site.ts name) -->
-    <text x="0" y="${logoBuffer ? '120' : '80'}" class="serif" font-size="64" font-weight="700" fill="${colors.text}">
+    <text x="0" y="118" class="serif" font-size="66" font-weight="700" fill="${colors.text}">
       Blazing Star Therapy
     </text>
 
-    <!-- Accent line -->
-    <line x1="0" y1="${logoBuffer ? '150' : '110'}" x2="60" y2="${logoBuffer ? '150' : '110'}" stroke="${colors.accent}" stroke-width="4"/>
-
-    <!-- Tagline -->
-    <text x="0" y="${logoBuffer ? '200' : '160'}" class="sans" font-size="28" font-weight="400" fill="${colors.text}" opacity="0.85">
-      Evidence-based therapy in Bloomington, Indiana
+    <text x="0" y="188" class="sans" font-size="28" font-weight="500" fill="${colors.muted}">
+      Psychotherapy in Illinois and Indiana
     </text>
 
-    <!-- Location -->
-    <text x="0" y="${logoBuffer ? '240' : '200'}" class="sans" font-size="24" font-weight="500" fill="${colors.text}">
-      Bloomington, Indiana
+    <text x="0" y="302" class="sans" font-size="42" font-weight="700" fill="${colors.text}">
+      Tucker Eads, LCSW
     </text>
 
-    <!-- Credentials with accent line above -->
-    <line x1="0" y1="${logoBuffer ? '280' : '240'}" x2="80" y2="${logoBuffer ? '280' : '240'}" stroke="${colors.accent}" stroke-width="2"/>
-    <text x="0" y="${logoBuffer ? '310' : '270'}" class="sans" font-size="20" font-weight="400" fill="${colors.accent}">
-      MA, LSW
+    <text x="0" y="356" class="sans" font-size="26" font-weight="400" fill="${colors.muted}">
+      Evidence-informed therapy for anxiety, stress,
+    </text>
+    <text x="0" y="394" class="sans" font-size="26" font-weight="400" fill="${colors.muted}">
+      chronic pain, and life transitions.
+    </text>
+
+    <rect x="0" y="448" width="344" height="60" rx="30" fill="${colors.primary}"/>
+    <text x="34" y="487" class="sans" font-size="24" font-weight="600" fill="#FFFFFF">
+      blazingstartherapy.com
     </text>
   </g>
 </svg>
 `;
 
-    // Convert SVG to PNG using sharp
-    await sharp(Buffer.from(svg))
-      .resize(1200, 630)
+    const panelBuffer = await sharp(Buffer.from(svg)).png().toBuffer();
+
+    await sharp({
+      create: {
+        width: cardWidth,
+        height: cardHeight,
+        channels: 4,
+        background: colors.background,
+      },
+    })
+      .composite([
+        { input: photoBuffer, left: cardWidth - photoWidth, top: 0 },
+        { input: panelBuffer, left: 0, top: 0 },
+      ])
       .png()
       .toFile(outputPath);
 
     console.log('✅ OG image generated successfully at:', outputPath);
     console.log('   Dimensions: 1200x630px');
     console.log('   Format: PNG');
-    console.log('   Logo: ' + (logoBuffer ? 'Included' : 'Placeholder used'));
+    console.log('   Photo: Included');
   } catch (error) {
     console.error('❌ Error generating OG image:', error);
     process.exit(1);

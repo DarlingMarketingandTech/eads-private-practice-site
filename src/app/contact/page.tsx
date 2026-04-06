@@ -22,7 +22,7 @@ export default function Contact() {
               You can book a no-cost 20-minute initial consultation with me here. I have telehealth availability in Illinois and Indiana, and in-person sessions in Bloomington, IN.
             </p>
           </div>
-          
+
           <div className="flex justify-center mb-12">
             <Link
               href="https://blazingstar.sessionshealth.com/"
@@ -36,38 +36,45 @@ export default function Contact() {
           </div>
 
           {/* Email & Phone Contact */}
-          <div className="text-center pt-8 border-t border-gray-200">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-700 mb-4">
-              <Mail className="w-6 h-6" />
+          <div className="pt-8 border-t border-gray-200">
+            <div className="mx-auto max-w-2xl rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-700 ring-1 ring-gray-200">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <p className="text-base font-medium text-gray-800">
+                  You can also reach me directly
+                </p>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                <a
+                  href="mailto:tucker@blazingstartherapy.com"
+                  className="flex flex-col gap-1 rounded-xl border border-gray-200 bg-white px-4 py-3 text-left transition-colors hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <span className="text-sm font-medium text-gray-600">Email</span>
+                  <span className="break-all text-base font-semibold text-gray-900">
+                    tucker@blazingstartherapy.com
+                  </span>
+                </a>
+
+                <a
+                  href="tel:18122698624"
+                  className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white px-4 py-3 transition-colors hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <span className="text-sm font-medium text-gray-600">Indiana</span>
+                  <span className="text-base font-semibold text-gray-900">812-269-8624</span>
+                </a>
+
+                <a
+                  href="tel:13129679987"
+                  className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white px-4 py-3 transition-colors hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <span className="text-sm font-medium text-gray-600">Illinois</span>
+                  <span className="text-base font-semibold text-gray-900">312-967-9987</span>
+                </a>
+              </div>
             </div>
-            <p className="text-lg text-gray-700 mb-4">
-              You can also email me:
-            </p>
-            <a
-              href="mailto:tucker@blazingstartherapy.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl font-semibold text-primary hover:text-primary/80 transition duration-300 ease-in-out"
-            >
-              tucker@blazingstartherapy.com
-            </a>
-            <p className="mt-4 text-lg text-gray-700">
-              Indiana:{" "}
-              <a
-                href="tel:18122698624"
-                className="font-semibold text-gray-900 hover:underline underline-offset-4"
-              >
-                812-269-8624
-              </a>
-              {"  "}•{"  "}
-              Illinois:{" "}
-              <a
-                href="tel:13129679987"
-                className="font-semibold text-gray-900 hover:underline underline-offset-4"
-              >
-                312-967-9987
-              </a>
-            </p>
           </div>
         </div>
       </section>
@@ -89,7 +96,7 @@ export default function Contact() {
               <p className="text-gray-700 mb-6 leading-relaxed">
                 I&apos;m an in-network provider with the insurances listed below. After the initial consultation I can process an insurance verification to confirm your benefits and out-of-pocket cost, including co-pay or co-insurance. For in-network insurance, the cost is set by the insurance company and the specifics of your plan.
               </p>
-              
+
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-gray-900">Illinois:</h4>
@@ -129,7 +136,7 @@ export default function Contact() {
                       </li>
                     </ul>
                   </div>
-                  
+
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-gray-900">Indiana:</h4>
                     <ul className="space-y-2 text-gray-700">
