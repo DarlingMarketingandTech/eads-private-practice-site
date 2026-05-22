@@ -4,11 +4,14 @@ import { AboutTuckerSection } from "@/components/sections/home/AboutTuckerSectio
 import { ApproachSection } from "@/components/sections/home/ApproachSection";
 import { ConnectSection } from "@/components/sections/home/ConnectSection";
 import { BlazingStarStorySection } from "@/components/sections/home/BlazingStarStorySection";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Blazing Star Therapy | Psychotherapy in Illinois and Indiana",
-  description: "Tucker Eads, LCSW - Evidence-based psychotherapy for anxiety, stress, and life transitions across Illinois and Indiana. Specializing in ACT and DBT approaches."
-};
+export const metadata: Metadata = createMetadata({
+  title: "Tucker Eads, LCSW",
+  description:
+    "Tucker Eads, LCSW - Evidence-based psychotherapy for anxiety, stress, and life transitions across Illinois and Indiana. Specializing in ACT and DBT approaches.",
+  path: "",
+});
 
 export default function Home() {
   return (

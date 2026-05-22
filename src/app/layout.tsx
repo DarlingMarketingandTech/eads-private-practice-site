@@ -12,7 +12,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const defaultTitle = `Psychotherapy in Illinois and Indiana | ${site.name}`;
+const defaultTitle = `Tucker Eads, LCSW | ${site.name}`;
 const defaultDescription = "Evidence-informed psychotherapy services across Illinois and Indiana. Licensed Clinical Social Worker (LCSW) providing telehealth therapy.";
 
 export const metadata: Metadata = {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: `${site.name} - Psychotherapy in Illinois and Indiana`,
+        alt: `Tucker Eads, LCSW - ${site.name}`,
       },
     ],
   },
