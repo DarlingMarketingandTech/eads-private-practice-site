@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import content from "@/content/homepage.json";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -30,16 +31,10 @@ export function BlazingStarStorySection() {
 					transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
 				>
 					<h2 className="text-4xl md:text-5xl text-stone-900">
-						What is Blazing Star?
+						{content.story.heading}
 					</h2>
 					<p className="text-xl text-stone-800 leading-relaxed">
-						Blazing star, or <em>Liatris</em>, is a genus of perennial flowers
-						native to North America. Prairie blazing star{" "}
-						(<em>Liatris pycnostachya</em>) is an iconic prairie plant, blooming
-						from midsummer onward. Rough blazing star (<em>Liatris aspera</em>)
-						is hardy and tolerates drought and sandy and rocky soil. Blazing
-						stars host numerous pollinators including bees, butterflies, moths,
-						and even hummingbirds.
+						{content.story.description}
 					</p>
 				</motion.div>
 
@@ -51,8 +46,8 @@ export function BlazingStarStorySection() {
 					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 				>
 					<Image
-						src="/images/Liatris/liatris-spicata-1520550_1280.jpg"
-						alt="Blazing Star flower (Liatris spicata)"
+						src={content.story.image}
+						alt={content.story.imageAlt}
 						fill
 						className="object-cover"
 						priority
