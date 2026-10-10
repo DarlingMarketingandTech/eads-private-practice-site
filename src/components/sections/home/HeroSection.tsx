@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import content from "@/content/homepage.json";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
@@ -14,7 +15,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 animate-fade-in">
         <Image
-          src="/images/home page/home (1).jpg"
+          src={content.hero.backgroundImage}
           alt="Field of blazing star flowers"
           fill
           className="object-cover"
@@ -31,7 +32,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-lg tracking-tight"
         >
-          Blazing Star Therapy
+          {content.hero.title}
         </motion.h1>
 
         <motion.p
@@ -40,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="text-xl md:text-2xl mb-12 text-white/95 drop-shadow-md font-light"
         >
-          Psychotherapy and Counseling
+          {content.hero.subtitle}
         </motion.p>
 
         {/* Scroll Down Indicator */}

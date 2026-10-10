@@ -1,17 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import content from "@/content/homepage.json";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Calendar, Mail, ShieldCheck } from "lucide-react";
 
 const insurancePartners = {
-  illinois: [
-    "Blue Cross and Blue Shield of Illinois (BCBS-IL) (PPO and Blue Choice)",
-    "Cigna",
-    "Aetna",
-  ],
-  indiana: ["Cigna", "Aetna", "Anthem Blue Cross and Blue Shield", "Carelon"],
+  illinois: content.connect.illinoisInsurance,
+  indiana: content.connect.indianaInsurance,
 };
 
 export function ConnectSection() {
@@ -41,25 +38,23 @@ export function ConnectSection() {
         >
           <div>
             <h2 className="text-4xl md:text-5xl text-stone-900 mb-6">
-              Schedule initial consultation
+              {content.connect.heading}
             </h2>
             <p className="text-xl text-stone-800 leading-relaxed">
-              You can book a no-cost 20-minute initial consultation with me here.
-              I have telehealth availability in Illinois and Indiana, and
-              in-person sessions in Bloomington, IN.
+              {content.connect.intro}
             </p>
           </div>
 
           {/* Action Hub */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <Link
-              href="https://blazingstar.sessionshealth.com/"
+              href={content.connect.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 bg-[#90b654] text-white px-8 py-5 rounded-full font-bold text-lg hover:shadow-lg hover:scale-105 transition-transform duration-200"
             >
               <Calendar className="w-5 h-5" />
-              Book no-cost consultation
+              {content.connect.bookingLabel}
             </Link>
           </div>
 
@@ -71,35 +66,35 @@ export function ConnectSection() {
                   <Mail className="h-4 w-4" />
                 </span>
                 <p className="text-base font-medium text-stone-800">
-                  You can also reach me directly
+                  {content.connect.contactHeading}
                 </p>
               </div>
 
               <div className="mt-4 space-y-3">
                 <a
-                  href="mailto:tucker@blazingstartherapy.com"
+                  href={`mailto:${content.connect.email}`}
                   className="flex flex-col gap-1 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
                 >
                   <span className="text-sm font-medium text-stone-600">Email</span>
                   <span className="break-all text-base font-semibold text-stone-900">
-                    tucker@blazingstartherapy.com
+                    {content.connect.email}
                   </span>
                 </a>
 
                 <a
-                  href="tel:18122698624"
+                  href={`tel:${content.connect.indianaPhone.replace(/[^\d+]/g, "")}`}
                   className="flex items-center justify-between gap-4 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
                 >
                   <span className="text-sm font-medium text-stone-600">Indiana</span>
-                  <span className="text-base font-semibold text-stone-900">812-269-8624</span>
+                  <span className="text-base font-semibold text-stone-900">{content.connect.indianaPhone}</span>
                 </a>
 
                 <a
-                  href="tel:13129679987"
+                  href={`tel:${content.connect.illinoisPhone.replace(/[^\d+]/g, "")}`}
                   className="flex items-center justify-between gap-4 rounded-xl border border-stone-200 bg-white px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
                 >
                   <span className="text-sm font-medium text-stone-600">Illinois</span>
-                  <span className="text-base font-semibold text-stone-900">312-967-9987</span>
+                  <span className="text-base font-semibold text-stone-900">{content.connect.illinoisPhone}</span>
                 </a>
               </div>
             </div>
@@ -116,15 +111,13 @@ export function ConnectSection() {
         >
           <div>
             <h2 className="text-4xl md:text-5xl text-stone-900 mb-6">
-              Cost
+              {content.connect.costHeading}
             </h2>
             <h3 className="text-2xl font-semibold text-stone-900 mb-4">
-              In-network with your insurance
+              {content.connect.insuranceHeading}
             </h3>
             <p className="text-xl text-stone-800 leading-relaxed">
-              I’m an in-network provider with the insurances listed below. After
-              the initial consultation I can process an insurance verification to
-              confirm your benefits and out-of-pocket cost.
+              {content.connect.insuranceIntro}
             </p>
           </div>
 
@@ -167,9 +160,7 @@ export function ConnectSection() {
           {/* Self-Pay Footer */}
           <div className="pt-8 border-t border-stone-300">
             <p className="text-stone-800">
-              Out-of-network and self-pay: I can also work with you as an
-              out-of-network provider for you to submit to your insurance. For
-              out-of-network and self-pay, the rate is $150 per session.
+              {content.connect.selfPay}
             </p>
           </div>
         </motion.div>
