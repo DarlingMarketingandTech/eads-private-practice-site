@@ -1,25 +1,10 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
+import content from "@/content/homepage.json";
 import { useRef } from "react";
 
-const approaches = [
-  {
-    title: "Therapeutic relationship",
-    content:
-      "I center the therapeutic relationship. Healing and growth are most likely to happen in therapy within a relationship of safety, empathy, and collaboration. That is key to having the willingness to explore challenging and vulnerable themes.",
-  },
-  {
-    title: "Evidence based",
-    content:
-      "My approach is grounded in evidence-based therapies including Acceptance and Commitment Therapy (ACT) and Dialectical Behavior Therapy (DBT). DBT offers specific skills for coping with distress, navigating strong emotions, and handling challenges in relationships. ACT is all about doing what matters most to us, despite the inevitable pain in life. I also integrate elements of other modalities including relational therapy and Cognitive Processing Therapy for PTSD (CPT).",
-  },
-  {
-    title: "What to expect",
-    content:
-      "You are always in charge, and I'm here to help guide you. Initially we'll meet for 1-2 sessions to better understand the problems and goals you'd like to address. We'll then develop a treatment plan together and you can decide if I'm a good fit. We'll check-in regularly and adjust as needed.",
-  },
-];
+const approaches = content.approach.cards;
 
 export function ApproachSection() {
   const ref = useRef(null);
@@ -88,7 +73,7 @@ export function ApproachSection() {
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl text-stone-900 mb-4">
-            My Therapeutic Approach
+            {content.approach.heading}
           </h2>
         </motion.div>
 
@@ -125,7 +110,7 @@ export function ApproachSection() {
           className="mt-28 text-center max-w-3xl mx-auto"
         >
           <p className="italic text-xl md:text-2xl text-stone-700 leading-relaxed">
-            Regardless of the treatment plan and intervention, I commit to showing up for you with empathy, openness, and care.
+            {content.approach.commitment}
           </p>
         </motion.div>
       </div>
