@@ -12,6 +12,10 @@ content:
     type: file
     path: src/content/homepage.json
     format: json
+    operations:
+      create: false
+      rename: false
+      delete: false
     fields:
       - name: hero
         label: 1. Welcome section
