@@ -1,0 +1,90 @@
+# Simple editing interface for Blazing Star Therapy.
+# Pages CMS is a Git-based editor, not an additional website or CMS server.
+# Only the content listed below is editable; layout and styling remain in Next.js.
+media:
+  input: public/images
+  output: /images
+  rename: safe
+
+content:
+  - name: homepage
+    label: Homepage
+    type: file
+    path: src/content/homepage.json
+    format: json
+    fields:
+      - name: hero
+        label: 1. Welcome section
+        type: object
+        fields:
+          - { name: title, label: Practice name, type: string, required: true }
+          - { name: subtitle, label: Short description, type: string, required: true }
+          - { name: backgroundImage, label: Background photo, type: image, required: true }
+      - name: about
+        label: 2. About Tucker
+        type: object
+        fields:
+          - { name: portraitImage, label: Portrait photo, type: image, required: true }
+          - { name: portraitAlt, label: Portrait accessibility description, type: string }
+          - { name: name, label: Name and credentials, type: string, required: true }
+          - { name: intro, label: Introduction, type: text }
+          - { name: heading, label: Section heading, type: string }
+          - { name: background, label: Background and education, type: text }
+          - { name: experience, label: Clinical experience, type: text }
+          - { name: personal, label: Personal interests, type: text }
+      - name: approach
+        label: 3. Therapeutic approach
+        type: object
+        fields:
+          - { name: heading, label: Section heading, type: string }
+          - name: cards
+            label: Approach cards
+            type: object
+            list:
+              min: 1
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - { name: title, label: Card heading, type: string, required: true }
+              - { name: content, label: Card description, type: text }
+          - { name: commitment, label: Closing statement, type: text }
+      - name: connect
+        label: 4. Appointments, contact and pricing
+        type: object
+        fields:
+          - { name: heading, label: Appointment heading, type: string }
+          - { name: intro, label: Consultation description, type: text }
+          - { name: bookingUrl, label: Booking web address, type: string, required: true }
+          - { name: bookingLabel, label: Booking button text, type: string }
+          - { name: contactHeading, label: Contact box heading, type: string }
+          - { name: email, label: Contact email, type: string, required: true }
+          - { name: indianaPhone, label: Indiana phone number, type: string }
+          - { name: illinoisPhone, label: Illinois phone number, type: string }
+          - { name: costHeading, label: Pricing heading, type: string }
+          - { name: insuranceHeading, label: Insurance heading, type: string }
+          - { name: insuranceIntro, label: Insurance explanation, type: text }
+          - name: illinoisInsurance
+            label: Illinois insurance plans
+            type: string
+            list: true
+          - name: indianaInsurance
+            label: Indiana insurance plans
+            type: string
+            list: true
+          - { name: selfPay, label: Out-of-network and self-pay information, type: text }
+      - name: story
+        label: 5. Blazing Star flower story
+        type: object
+        fields:
+          - { name: heading, label: Section heading, type: string }
+          - { name: description, label: Flower story, type: text }
+          - { name: image, label: Flower photo, type: image }
+          - { name: imageAlt, label: Photo accessibility description, type: string }
+
+settings:
+  commit:
+    identity: user
+    templates:
+      update: "content: update {path}"
